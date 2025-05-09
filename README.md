@@ -16,7 +16,7 @@ Ele resolve o problema de consolidar e analisar informações de usuários e sua
 
 * **Python 3.x**
 * **Flask**: Para simular um endpoint de servidor de e-mail. 
-* **Requests**: Para realizar chamadas HTTP à API externa e ao servidor de e-mail simulado. [cite: 8, 14]
+* **Requests**: Para realizar chamadas HTTP à API externa e ao servidor de e-mail simulado.
 * **Pandas**: Para manipulação de dados e geração do relatório em Excel. 
 * **Openpyxl**: (Dependência do Pandas) Para escrita de arquivos Excel.
 * **Unittest**: Para a suíte de testes automatizados.
@@ -65,14 +65,14 @@ Ele resolve o problema de consolidar e analisar informações de usuários e sua
     ```bash
     python server.py
     ```
-    Este servidor irá rodar na porta 5000 por padrão. [cite: 5]
+    Este servidor irá rodar na porta 5000 por padrão.
 
 2.  **Execute o script principal de automação:**
-    O script `main.py` é o ponto de entrada para iniciar o processo de automação. [cite: 1] Abra outro terminal (com o ambiente virtual ativado), navegue até a raiz do projeto e execute:
+    O script `main.py` é o ponto de entrada para iniciar o processo de automação. Abra outro terminal (com o ambiente virtual ativado), navegue até a raiz do projeto e execute:
     ```bash
     python main.py
     ```
-    O script exibirá "Iniciando..."[cite: 4], processará os dados, gerará o relatório e simulará o envio do e-mail.
+    O script exibirá "Iniciando...", processará os dados, gerará o relatório e simulará o envio do e-mail.
 
 ## Como Executar os Testes
 
