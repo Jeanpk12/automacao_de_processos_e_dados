@@ -15,9 +15,9 @@ Ele resolve o problema de consolidar e analisar informações de usuários e sua
 ## Tecnologias Utilizadas
 
 * **Python 3.x**
-* **Flask**: Para simular um endpoint de servidor de e-mail. [cite: 5]
+* **Flask**: Para simular um endpoint de servidor de e-mail. 
 * **Requests**: Para realizar chamadas HTTP à API externa e ao servidor de e-mail simulado. [cite: 8, 14]
-* **Pandas**: Para manipulação de dados e geração do relatório em Excel. [cite: 19]
+* **Pandas**: Para manipulação de dados e geração do relatório em Excel. 
 * **Openpyxl**: (Dependência do Pandas) Para escrita de arquivos Excel.
 * **Unittest**: Para a suíte de testes automatizados.
 
@@ -26,7 +26,7 @@ Ele resolve o problema de consolidar e analisar informações de usuários e sua
 1.  **Clone o repositório (se aplicável):**
     ```bash
     git clone <url-do-repositorio>
-    cd PROJETO_AUTOMACAO
+    cd automacao_de_processos_e_dados
     ```
 
 2.  **Crie um ambiente virtual:**
