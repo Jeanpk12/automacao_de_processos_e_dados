@@ -1,98 +1,130 @@
-# 📄 Documentação Técnica – Automação de Processos e Dados
+# PROJETO_AUTOMACAO
 
-## 1. Introdução
+## Descrição do Projeto
 
-Este projeto simula uma automação de processamento de dados a partir da API fictícia JSONPlaceholder. O fluxo inclui:
+Este projeto automatiza o processo de coleta de dados de usuários e seus posts de uma API externa, realiza o cálculo de métricas sobre esses dados, gera um relatório consolidado em formato Excel e simula o envio deste relatório por e-mail.
 
-- Extração de dados de usuários e seus posts.
-- Cálculo da média de caracteres dos textos dos posts.
-- Geração de um relatório em Excel.
-- Simulação do envio desse relatório via um endpoint implementado com Flask.
+O projeto serve para exemplificar um fluxo de automação que envolve:
+* Integração com APIs externas (JSONPlaceholder para dados de usuários e posts).
+* Processamento e análise de dados.
+* Geração de relatórios.
+* Simulação de notificações (envio de e-mail).
 
----
+Ele resolve o problema de consolidar e analisar informações de usuários e suas postagens de forma automática, apresentando um resumo útil em um relatório.
 
-## 2. Detalhes das Operações
+## Tecnologias Utilizadas
 
-### 2.1 Obtenção de Usuários
+* **Python 3.x**
+* **Flask**: Para simular um endpoint de servidor de e-mail. [cite: 5]
+* **Requests**: Para realizar chamadas HTTP à API externa e ao servidor de e-mail simulado. [cite: 8, 14]
+* **Pandas**: Para manipulação de dados e geração do relatório em Excel. [cite: 19]
+* **Openpyxl**: (Dependência do Pandas) Para escrita de arquivos Excel.
+* **Unittest**: Para a suíte de testes automatizados.
 
-- **Endpoint:** `https://jsonplaceholder.typicode.com/users`
-- **Método:** `GET`
-- **Descrição:** Coleta todos os usuários, extraindo `id` e `name`.
-![alt text](./images/obtencao_usuario.png)
+## Instruções de Instalação
 
-### 2.2 Obtenção de Posts por Usuário
+1.  **Clone o repositório (se aplicável):**
+    ```bash
+    git clone <url-do-repositorio>
+    cd PROJETO_AUTOMACAO
+    ```
 
-- **Endpoint:** `https://jsonplaceholder.typicode.com/posts?userId={id}`
-- **Método:** `GET`
-- **Descrição:** Coleta os posts associados a cada usuário.
-![alt text](./images/obtencao_posts_por_usuario.png)
+2.  **Crie um ambiente virtual:**
+    É recomendado utilizar um ambiente virtual para isolar as dependências do projeto.
+    ```bash
+    python -m venv venv
+    ```
 
-### 2.3 Cálculo da Média de Caracteres
+3.  **Ative o ambiente virtual:**
+    * No Windows:
+        ```bash
+        .\venv\Scripts\activate
+        ```
+    * No macOS/Linux:
+        ```bash
+        source venv/bin/activate
+        ```
 
-- **Campo analisado:** `body` de cada post.
-- **Lógica:** Soma-se o número de caracteres de todos os textos e divide-se pela quantidade total de posts.
-![alt text](./images/calcular_media.png)
+4.  **Instale as dependências:**
+    O projeto utiliza um arquivo `requirements.txt` para listar suas dependências.
+    ```bash
+    pip install -r requirements.txt
+    ```
+    O conteúdo do `requirements.txt` deve ser:
+    ```
+    requests
+    pandas
+    openpyxl
+    flask
+    ```
 
-### 2.4 Geração de Relatório
+## Como Rodar o Projeto
 
-- **Formato:** `.xlsx`
-- **Bibliotecas:** `pandas`, `openpyxl`
-- **Colunas do relatório:**
-  - ID do Usuário
-  - Nome do Usuário
-  - Quantidade de Posts
-  - Média de Caracteres dos Posts
-- **Arquivo gerado:** `relatorio.xlsx`
-![alt text](./images/gerador_relatorio_excel.png)
+1.  **Inicie o servidor de simulação de e-mail (opcional, mas necessário para a funcionalidade completa):**
+    O servidor `server.py` simula o recebimento de e-mails. Abra um terminal, navegue até a raiz do projeto e execute:
+    ```bash
+    python server.py
+    ```
+    Este servidor irá rodar na porta 5000 por padrão. [cite: 5]
 
-### 2.5 Simulação de Envio do Relatório
+2.  **Execute o script principal de automação:**
+    O script `main.py` é o ponto de entrada para iniciar o processo de automação. [cite: 1] Abra outro terminal (com o ambiente virtual ativado), navegue até a raiz do projeto e execute:
+    ```bash
+    python main.py
+    ```
+    O script exibirá "Iniciando..."[cite: 4], processará os dados, gerará o relatório e simulará o envio do e-mail.
 
-- **Endpoint simulado:** `POST /send-email`
-- **Framework:** Flask
-- **Descrição:** O endpoint `/send-email`, criado com Flask, simula o recebimento de um arquivo de relatório. O backend imprime uma mensagem de sucesso ou erro no terminal para representar a operação.
-![alt text](./images/servidor.png)
----
+## Como Executar os Testes
 
-## 3. Ferramentas e Configurações
+O projeto utiliza o módulo `unittest` do Python para testes. Os testes estão localizados na pasta `tests/`.
 
-- **Linguagem:** Python 3.11
-- **Principais bibliotecas:**
-  - `requests`
-  - `pandas`
-  - `openpyxl`
-  - `flask`
-  - `unittest`
-- **Organização do Projeto:**
+Para executar todos os testes, navegue até a raiz do projeto no terminal (com o ambiente virtual ativado) e utilize o comando de descoberta de testes do unittest:
+```bash
+python -m unittest discover tests
+```
+Alternativamente, você pode executar arquivos de teste individualmente:
 
+```bash
+python -m unittest tests.test_api_mock
+python -m unittest tests.test_helpers
+```
+## Exemplos de Uso
+Inputs:
+- O script main.py não requer inputs diretos via linha de comando para sua execução principal.
+- Ele consome dados da API pública https://jsonplaceholder.typicode.com (usuários e posts).   
+
+Outputs Esperados:
+
+1. Console Output durante a execução do ```main.py```:
+
+- Mensagem de início: ```"Iniciando..."```   
+- Confirmação da geração do relatório: ```"Relatório gerado: output/relatorio.xlsx"```   
+- Confirmação da simulação de envio de e-mail (resposta do ```server.py```): ```"Resposta da API fictícia: {'status': 'sucesso', 'mensagem': 'E-mail enviado com sucesso (simulado)'}"```   
+2. Arquivo de Relatório:
+
+- Um arquivo Excel chamado ```relatorio.xlsx``` será criado na pasta ```output/```.
+- Este relatório conterá as colunas: **'ID do Usuário'**, **'Nome do Usuário'**, **'Quantidade de Posts'**, **'Média de Caracteres dos Posts'**.   
+3. Console Output durante a execução do ```server.py``` (se o ```main.py``` for executado):
+
+Mensagem indicando o recebimento da simulação de e-mail: ```"Simulando envio de e-mail com os dados:"``` seguido dos dados do payload JSON.
+
+## Estrutura de Diretórios
 ```yaml
 PROJETO_AUTOMACAO/
-├── main.py
-├── server.py ← servidor Flask com o endpoint /send-email
-├── requirements.txt
-├── services/
-│ ├── api.py
-│ ├── automacao.py
-│ ├── email.py
-│ └── report.py
-├── utils/
-│ └── helpers.py
-└── tests/
-├── test_api_mock.py
-└── test_helpers.py
+├── main.py                 # Script principal que orquestra a automação
+├── server.py               # Servidor Flask para simular envio de e-mail
+├── requirements.txt        # Lista de dependências do projeto
+├── README.md               # Documentação do projeto (este arquivo)
+├── output/                 # Diretório para arquivos gerados
+│   └── relatorio.xlsx      # Relatório em Excel gerado pela automação
+├── services/               # Módulos de serviço da aplicação
+│   ├── api.py              # Serviço para interagir com a API JSONPlaceholder
+│   ├── automacao.py        # Classe principal que orquestra o processo
+│   ├── email.py            # Serviço para simular o envio de e-mails
+│   └── report.py           # Serviço para gerar relatórios
+├── tests/                  # Contém os testes automatizados
+│   ├── test_api_mock.py    # Testes para o serviço de API com mock
+│   └── test_helpers.py     # Testes para as funções utilitárias
+└── utils/                  # Módulos com funções utilitárias
+    └── helpers.py          # Funções auxiliares (ex: calcular_media_caracteres)
 ```
----
-
-## 4. Problemas e Soluções
-
-- **Dados inconsistentes ou incompletos:** Verificação de integridade dos dados antes do uso.
-- **Usuários sem posts:** Tratamento de divisão por zero (retorna `0` ou `None`).
-- **Simulação do envio:** Utilização de um servidor Flask local para simular o endpoint `/send-email`, validando o recebimento do arquivo.
-
----
-
-## 5. Conclusão
-
-O projeto atende aos objetivos propostos, com foco em boas práticas, clareza de fluxo e modularização do código. Todas as etapas — consumo de dados, cálculo, geração de relatório e simulação de envio com Flask — foram realizadas com sucesso.
-
----
-

@@ -4,12 +4,30 @@ from services.email import EmailService
 from utils.helpers import calcular_media_caracteres
 
 class Automacao:
+    """
+    Classe responsável por orquestrar o processo de automação:
+    - Coleta de dados de usuários e seus posts
+    - Cálculo de métricas
+    - Geração de relatório em Excel
+    - Simulação de envio por e-mail
+    """
+
     def __init__(self):
+        """
+        Inicializa os serviços de API, relatório e e-mail.
+        """
         self.api_service = APIService()
         self.report_service = ReportService()
         self.email_service = EmailService()
 
     def executar(self):
+        """
+        Executa o processo de automação:
+        - Obtém os usuários
+        - Para cada usuário, coleta os posts e calcula a média de caracteres
+        - Gera um relatório em Excel com os dados agregados
+        - Simula o envio do relatório por e-mail
+        """
         usuarios = self.api_service.obter_usuarios()
         relatorio = []
 
