@@ -25,7 +25,7 @@ Ele resolve o problema de consolidar e analisar informações de usuários e sua
 
 1.  **Clone o repositório (se aplicável):**
     ```bash
-    git clone <url-do-repositorio>
+    git clone <[url-do-repositorio](https://github.com/Jeanpk12/automacao_de_processos_e_dados.git)>
     cd automacao_de_processos_e_dados
     ```
 
