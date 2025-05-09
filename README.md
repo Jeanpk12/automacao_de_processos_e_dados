@@ -112,6 +112,11 @@ Mensagem indicando o recebimento da simulação de e-mail: ```"Simulando envio d
 ```yaml
 PROJETO_AUTOMACAO/
 ├── main.py                 # Script principal que orquestra a automação
+├── docs
+    ├── api.md              # Documenta o modulo responsável por realizar a integração com a API JSONPlaceholder
+    ├── automacao.md        # Documenta o modulo que centraliza e orquestra todo o processo de automação do sistema
+    ├── overview.md         # Da uma visão geral do projeto
+    ├── report.md           # Documenta a geração de relatório no formato Excel
 ├── server.py               # Servidor Flask para simular envio de e-mail
 ├── requirements.txt        # Lista de dependências do projeto
 ├── README.md               # Documentação do projeto (este arquivo)
